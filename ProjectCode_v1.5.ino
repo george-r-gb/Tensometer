@@ -15,8 +15,8 @@ enum State {
 };
 
 State currentState = IDLE;
-float maxload = 0.0; // Variable to track the maximum load
-int numHandleTurns = 0; // Variable to store the number of handle turns
+float maxload = 0.0; // Variable to track the max load
+int numHandleTurns = 0; // Variable to store number of handle turns
 
 void setup() {
   Serial.begin(9600);
@@ -45,20 +45,19 @@ void loop() {
       Serial.print("Maximum load: ");
       Serial.println(maxload);
       Serial.println("Type 'reset' to reset the programme");
-      maxload = 0.0; // Reset maximum load after printing
+      maxload = 0.0; // Reset max load after print
     }
   }
 
   switch (currentState) {
     case IDLE:
-      // Code is idle, do nothing
       break;
 
     case RUNNING:
       float load = scale.get_units();
       Serial.println(load);
       
-      // Update maximum load if necessary
+      // Update max load if greater than current
       if (load > maxload) {
         maxload = load;
       }
